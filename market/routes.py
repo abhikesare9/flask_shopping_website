@@ -42,12 +42,16 @@ def market_page():
         return redirect(url_for('market_page'))
 
     if request.method == "GET":
-        owned_items =  Item.query.filter_by(owner=current_user.id)
+        try:
+            owned_items =  Item.query.filter_by(owner=current_user.id)
 
-        items = Item.query.filter_by(owner=None)
-        if items.first() == None:
-            flash("You have bought all the items we will know once new items comes up",category='info')
-        return render_template('market.html', items=items, purchase_form=purchase_form,owned_items=owned_items,selling_form=selling_form)
+            items = Item.query.filter_by(owner=None)
+            if items.first() == None:
+                flash("You have bought all the items we will know once new items comes up",category='info')
+            return render_template('market.html', items=items, purchase_form=purchase_form,owned_items=owned_items,selling_form=selling_form)
+        except:
+            flash("You haven't logged in so cannot display the page",category='danger')
+            return redirect(url_for('login_page'))
 
 
 
