@@ -11,7 +11,7 @@ RUN  apt update -y
 RUN  apt upgrade -y 
 RUN  apt install python3 -y 
 RUN  apt install python3-pip -y
-RUN  pip install -r requirements.txt 
+RUN  pip3 install -r requirements.txt 
 
 
 EXPOSE 1111
