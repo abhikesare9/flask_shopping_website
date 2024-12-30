@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM python:3.10-bullseye
 RUN  mkdir flask_website 
 
 COPY requirements.txt flask_website/requirements.txt
